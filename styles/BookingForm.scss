@@ -10,6 +10,11 @@
   font-size: 14px;
   line-height: 24px;
 
+  @media screen and (max-width: 768px) {
+    box-shadow: none;
+    padding: 0;
+  }
+
   .header {
     padding-top: 8px;
     padding-bottom: 20px;
