@@ -19,7 +19,7 @@
     border-bottom: solid 1px #dfdfdf;
   }
 
-  .input {
+  .field {
     border: 1px solid;
     border-color: #dfdfdf;
     padding: 8px 12px;
@@ -41,43 +41,13 @@
       flex: 1;
     }
 
-    .icon,
-    .minus,
-    .plus {
+    .icon {
       color: #6a6a6a;
       flex-shrink: 0;
       display: flex;
       align-items: center;
       svg {
         height: 14px;
-      }
-    }
-
-    .people-no {
-      color: #414141;
-      border: solid 1px #dfdfdf;
-      background-color: #fff;
-      width: 40px;
-      -moz-appearance: textfield;
-      text-align: center;
-      outline-color: #505050;
-      &::-webkit-outer-spin-button,
-      &::-webkit-inner-spin-button {
-        -webkit-appearance: none;
-        margin: 0;
-      }
-    }
-
-    .minus,
-    .plus {
-      cursor: pointer;
-      color: #2ec4dd;
-      flex-shrink: 0;
-      height: 24px;
-      padding: 4px;
-      svg {
-        width: 100%;
-        height: 100%;
       }
     }
   }
@@ -119,6 +89,42 @@
         width: 24px;
         height: 16px;
         fill: #6a6a6a;
+      }
+    }
+  }
+}
+
+.persons-no {
+  input {
+    color: #414141;
+    border: solid 1px #dfdfdf;
+    background-color: #fff;
+    width: 40px;
+    text-align: center;
+    outline-color: #505050;
+    &::-webkit-outer-spin-button,
+    &::-webkit-inner-spin-button {
+      appearance: none;
+      margin: 0;
+    }
+  }
+
+  .minus,
+  .plus {
+    cursor: pointer;
+    color: #2ec4dd;
+    flex-shrink: 0;
+    height: 24px;
+    padding: 4px;
+    svg {
+      width: 100%;
+      height: 100%;
+    }
+
+    &.disabled {
+      cursor: not-allowed;
+      svg {
+        fill: #dfdfdf;
       }
     }
   }

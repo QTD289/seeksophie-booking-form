@@ -1,41 +1,21 @@
-import {
-  FaUser,
-  FaCalendarAlt,
-  FaCartPlus,
-  FaCreditCard,
-  FaRegMinusSquare,
-  FaRegPlusSquare,
-} from 'react-icons/fa';
+import { FaCreditCard } from 'react-icons/fa';
+
+import { useFormStore } from 'stores';
+
+import { Addon, Calendar, PersonsNo } from './components';
 
 export const BookingForm = (): JSX.Element => {
+  const { maxPersonsNo } = useFormStore();
+
   return (
     <div className="booking-form">
-      <div className="header">Booking Form</div>
-      <div className="input">
-        <div className="icon">
-          <FaUser />
-        </div>
-        <div className="placeholder">Number of Persons</div>
-        <div className="minus">
-          <FaRegMinusSquare />
-        </div>
-        <input type="number" min="0" className="people-no" value="0" />
-        <div className="plus">
-          <FaRegPlusSquare />
-        </div>
-      </div>
-      <div className="input">
-        <div className="icon">
-          <FaCalendarAlt />
-        </div>
-        <div className="placeholder">Select Date & Time</div>
-      </div>
-      <div className="input">
-        <div className="icon">
-          <FaCartPlus />
-        </div>
-        <div className="placeholder">Select Add-on(s)</div>
-      </div>
+      <div className="header">Booking for maximum {maxPersonsNo} persons</div>
+
+      <PersonsNo />
+
+      <Calendar />
+
+      <Addon />
 
       <div className="request">
         <div className="min-price">
