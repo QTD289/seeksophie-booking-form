@@ -1,0 +1,57 @@
+{
+	"parser": "@typescript-eslint/parser",
+	"plugins": ["@typescript-eslint"],
+	"extends": "next/core-web-vitals",
+	"rules": {
+		"@typescript-eslint/no-unused-vars": [
+			"warn",
+			{
+				"ignoreRestSiblings": true,
+				"destructuredArrayIgnorePattern": "^_"
+			}
+		],
+		"sort-imports": [
+			"warn",
+			{
+				"ignoreDeclarationSort": true
+			}
+		],
+		"import/first": "warn",
+		"import/newline-after-import": "warn",
+		"import/no-duplicates": "warn",
+		"import/no-self-import": "warn",
+		"import/export": 2,
+		"import/order": [
+			"warn",
+			{
+				"groups": [
+					"external",
+					"internal",
+					"builtin",
+					"parent",
+					"sibling"
+				],
+				"pathGroups": [
+					{
+						"pattern": "react",
+						"group": "external",
+						"position": "before"
+					},
+					{
+						"pattern": "*.{css,scss}",
+						"group": "index",
+						"patternOptions": { "matchBase": true },
+						"position": "after"
+					}
+				],
+
+				"pathGroupsExcludedImportTypes": ["react"],
+				"newlines-between": "always",
+				"alphabetize": {
+					"order": "asc",
+					"caseInsensitive": true
+				}
+			}
+		]
+	}
+}
