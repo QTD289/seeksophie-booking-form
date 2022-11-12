@@ -2,7 +2,7 @@ import { FaCreditCard } from 'react-icons/fa';
 
 import { useFormStore } from 'stores';
 
-import { Addon, Calendar, PersonsNo } from './components';
+import { Addon, DateTimeSelect, PersonsNo } from './components';
 
 export const BookingForm = (): JSX.Element => {
   const { maxPersonsNo } = useFormStore();
@@ -13,7 +13,7 @@ export const BookingForm = (): JSX.Element => {
 
       <PersonsNo />
 
-      <Calendar />
+      <DateTimeSelect />
 
       <Addon />
 

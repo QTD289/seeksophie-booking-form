@@ -1,3 +1,3 @@
 export * from './Addon';
-export * from './Calendar';
+export * from './DateTimeSelect';
 export * from './PersonsNo';
