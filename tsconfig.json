@@ -17,6 +17,7 @@
     "incremental": true,
     "paths": {
       "const": ["../const"],
+      "hooks": ["../hooks"],
       "stores": ["../stores"],
       "utils": ["../utils"]
     }

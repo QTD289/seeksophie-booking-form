@@ -1,6 +1,13 @@
 import create from 'zustand';
 
+import { DailyPrice } from 'BookingForm/interface';
+
+import { generateDailyPrices } from '../utils/mockData';
+
 interface State {
+  init: () => void;
+  dailyPrices: DailyPrice[];
+
   maxPersonsNo: number;
   personsNo: number;
   changePersonsNo: (value?: string) => void;
@@ -9,6 +16,12 @@ interface State {
 }
 
 export const useFormStore = create<State>((set, get) => ({
+  init: () => {
+    const dailyPrices = generateDailyPrices();
+    set({ dailyPrices });
+  },
+  dailyPrices: [],
+
   maxPersonsNo: 10,
   personsNo: 0,
   changePersonsNo: (value) => {

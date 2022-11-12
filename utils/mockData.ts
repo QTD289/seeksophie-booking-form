@@ -43,7 +43,7 @@ export const generateDailyPrice = (): DailyPrice => {
   };
 };
 
-export const generateMonthlyPrice = (): DailyPrice[] => {
+export const generateDailyPrices = (): DailyPrice[] => {
   const november: DailyPrice[] = [];
   const december: DailyPrice[] = [];
 

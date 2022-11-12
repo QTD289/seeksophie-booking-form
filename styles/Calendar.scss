@@ -14,6 +14,19 @@
       align-items: center;
       justify-content: space-between;
       color: #414141;
+      .switchMonth {
+        svg {
+          cursor: pointer;
+          &:hover {
+            color: #2ec4dd;
+          }
+        }
+        &.disabled {
+          svg {
+            color: #f3f3f3;
+          }
+        }
+      }
     }
 
     .WeekDaysWrapper {
@@ -43,10 +56,43 @@
         border: 1px solid;
         border-radius: 2px;
         display: flex;
+        flex-direction: column;
         align-items: center;
         justify-content: center;
+        gap: 8px;
         border-radius: 6px;
         margin: 2px;
+        font-size: 14px;
+        line-height: 12px;
+        position: relative;
+        .minPrice {
+          font-size: 10px;
+        }
+        .dropDown {
+          display: none;
+          position: absolute;
+          top: calc(100% + 4px);
+          padding: 12px 0px;
+          border-radius: 4px;
+          z-index: 1;
+          box-shadow: 0px 2px 16px rgb(0 0 0 / 25%);
+          background-color: #fff;
+          color: #414141;
+          width: 120px;
+
+          &.showing {
+            display: flex;
+            flex-direction: column;
+          }
+          .slot {
+            padding: 4px 12px;
+            line-height: 120%;
+            &:hover {
+              background-color: #f3f3f3;
+              font-weight: 500;
+            }
+          }
+        }
         &.default {
           color: #2ec4dd;
           border-color: #2ec4dd;
@@ -65,8 +111,10 @@
           }
         }
         &.notAvailable {
+          text-decoration: line-through;
           color: #9f9f9f;
           border-color: #9f9f9f;
+          pointer-events: none;
         }
         &.nextMonth {
           color: #dae1e7;

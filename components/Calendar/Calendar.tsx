@@ -4,6 +4,8 @@ import classNames from 'classnames';
 import dayjs, { Dayjs } from 'dayjs';
 import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 
+import { CalendarDayCell } from './CalendarDayCell';
+
 // REF: https://dev.to/franciscomendes10866/how-to-build-a-custom-calendar-component-in-react-26kj
 export const Calendar = () => {
   const [selectedDate, setSelectedDate] = useState<Dayjs>(dayjs());
@@ -45,19 +47,35 @@ export const Calendar = () => {
     return firstDayOfEachWeek.map((date) => generateWeek(date));
   }, [generateFirstDayOfEachWeek, firstDayOfFirstWeekOfMonth, generateWeek]);
 
+  const onPrevMonth = () => {
+    if (selectedDate.month() === currentDay.getMonth()) return;
+    setSelectedDate((date) => date.subtract(1, 'month'));
+  };
+
+  const onNextMonth = () => {
+    if (selectedDate.month() === currentDay.getMonth() + 1) return;
+    setSelectedDate((date) => date.add(1, 'month'));
+  };
+
   return (
     <div className="calendar">
       <div className="MainWrapper">
         <div className="CalendarHeaderWrapper">
-          <FaChevronLeft
-            size={20}
-            onClick={() => setSelectedDate((date) => date.subtract(1, 'month'))}
-          />
+          <div
+            className={classNames('switchMonth', {
+              disabled: selectedDate.month() === currentDay.getMonth(),
+            })}
+          >
+            <FaChevronLeft size={20} onClick={onPrevMonth} />
+          </div>
           <h3>{selectedDate.clone().format('MMM YYYY')}</h3>
-          <FaChevronRight
-            size={20}
-            onClick={() => setSelectedDate((date) => date.add(1, 'month'))}
-          />
+          <div
+            className={classNames('switchMonth', {
+              disabled: selectedDate.month() === currentDay.getMonth() + 1,
+            })}
+          >
+            <FaChevronRight size={20} onClick={onNextMonth} />
+          </div>
         </div>
         <div className="WeekDaysWrapper">
           {generateWeeksOfTheMonth[0].map((day, index) => (
@@ -69,19 +87,12 @@ export const Calendar = () => {
         {generateWeeksOfTheMonth.map((week, weekIndex) => (
           <div className="CalendarContentWrapper" key={`week-${weekIndex}`}>
             {week.map((day, dayIndex) => (
-              <div
-                className={classNames('CalendarDayCell', {
-                  default:
-                    selectedDate.clone().toDate().getMonth() === day.getMonth(),
-                  nextMonth:
-                    selectedDate.clone().toDate().getMonth() !== day.getMonth(),
-                  today: dayjs(currentDay).isSame(day, 'date'),
-                  past: dayjs(currentDay).isAfter(day, 'date'),
-                })}
+              <CalendarDayCell
                 key={`day-${dayIndex}`}
-              >
-                {day.getDate()}
-              </div>
+                selectedDate={selectedDate}
+                currentDay={currentDay}
+                day={day}
+              />
             ))}
           </div>
         ))}
