@@ -4,11 +4,14 @@ import classNames from 'classnames';
 import dayjs, { Dayjs } from 'dayjs';
 import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 
+import { useFormStore } from 'stores';
+
 import { CalendarDayCell } from './CalendarDayCell';
 
 // REF: https://dev.to/franciscomendes10866/how-to-build-a-custom-calendar-component-in-react-26kj
 export const Calendar = () => {
-  const [selectedDate, setSelectedDate] = useState<Dayjs>(dayjs());
+  const { bookingDate } = useFormStore();
+  const [selectedDate, setSelectedDate] = useState<Dayjs>(dayjs(bookingDate));
 
   const currentDay = useMemo(() => dayjs().toDate(), []);
 

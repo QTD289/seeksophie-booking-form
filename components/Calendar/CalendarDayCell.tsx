@@ -57,7 +57,7 @@ export const CalendarDayCell = (props: Props) => {
           today: isToday,
           past: isPast,
           notAvailable: isNotAvailable,
-          selected: bookingDate === day,
+          selected: bookingDate?.toISOString() === day.toISOString(),
         })}
         onClick={toggleDropdown}
       >
