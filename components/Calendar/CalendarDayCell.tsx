@@ -27,6 +27,8 @@ export const CalendarDayCell = (props: Props) => {
     selectedDate.clone().toDate().getMonth() !== day.getMonth();
   const isPast = dayjs(currentDay).isAfter(day, 'date');
   const isNotAvailable = dailyPrice?.timeSlots.length < 1;
+  const isSat = day.getDay() === 0;
+  const isSun = day.getDay() === 6;
 
   const wrapperRef = useRef<HTMLDivElement>(null);
   useOnClickOutside(wrapperRef, () => setShowingTimeSlots(false));
@@ -37,30 +39,35 @@ export const CalendarDayCell = (props: Props) => {
 
   return (
     <div
-      className={classNames('CalendarDayCell', {
-        default: isDefault,
-        nextMonth: isNextMonth,
-        today: isToday,
-        past: isPast,
-        notAvailable: isNotAvailable,
+      className={classNames('CalendarDayCellWrapper', {
+        sat: isSat,
+        sun: isSun,
       })}
       ref={wrapperRef}
-      onClick={toggleDropdown}
     >
-      <div>{day.getDate()}</div>
-      {monthIndex >= 0 && dailyPrice && (
-        <>
+      <div
+        className={classNames('CalendarDayCell', {
+          default: isDefault,
+          nextMonth: isNextMonth,
+          today: isToday,
+          past: isPast,
+          notAvailable: isNotAvailable,
+        })}
+        onClick={toggleDropdown}
+      >
+        <div>{day.getDate()}</div>
+        {dailyPrice && (
           <div className="minPrice">${dailyPrice.dayMinPrice}</div>
-          <div
-            className={classNames('dropDown', { showing: showingTimeSlots })}
-          >
-            {dailyPrice.timeSlots.map((slot, index) => (
-              <div className="slot" key={`time-${monthIndex}-${index}`}>
-                {slot.start} - {slot.end} - {slot.maximumPersons}
-              </div>
-            ))}
-          </div>
-        </>
+        )}
+      </div>
+      {monthIndex >= 0 && dailyPrice && (
+        <div className={classNames('dropDown', { showing: showingTimeSlots })}>
+          {dailyPrice.timeSlots.map((slot, index) => (
+            <div className="slot" key={`time-${monthIndex}-${index}`}>
+              {slot.start} - {slot.end} - {slot.maximumPersons}
+            </div>
+          ))}
+        </div>
       )}
     </div>
   );

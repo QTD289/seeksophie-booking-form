@@ -50,80 +50,131 @@
       display: flex;
       flex-direction: row;
 
-      .CalendarDayCell {
+      .CalendarDayCellWrapper {
+        position: relative;
         height: 48px;
         width: 54px;
-        border: 1px solid;
-        border-radius: 2px;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        gap: 8px;
-        border-radius: 6px;
         margin: 2px;
-        font-size: 14px;
-        line-height: 12px;
-        position: relative;
-        .minPrice {
-          font-size: 10px;
+        .CalendarDayCell {
+          height: 100%;
+          width: 100%;
+          border-radius: 2px;
+          border: 1px solid;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          gap: 8px;
+          border-radius: 6px;
+          font-size: 14px;
+          line-height: 12px;
+
+          .minPrice {
+            font-size: 10px;
+          }
+          &.default {
+            color: #2ec4dd;
+            border-color: #2ec4dd;
+            cursor: pointer;
+          }
+          &.selected {
+            background: #2ec4dd;
+            color: #fff;
+          }
+          &.default,
+          &.selected {
+            &:hover {
+              background: #25a9bf;
+              border-color: #25a9bf;
+              color: #fff;
+            }
+          }
+          &.notAvailable {
+            text-decoration: line-through;
+            color: #9f9f9f;
+            border-color: #9f9f9f;
+            pointer-events: none;
+          }
+          &.nextMonth {
+            color: transparent !important;
+            border-color: transparent !important;
+          }
+          &.past {
+            color: #f3f3f3;
+            border-color: #f3f3f3;
+            pointer-events: none;
+          }
         }
         .dropDown {
           display: none;
           position: absolute;
-          top: calc(100% + 4px);
+          top: calc(100% + 2px);
+          left: 0;
+          transform: translateX(-25%);
           padding: 12px 0px;
           border-radius: 4px;
           z-index: 1;
           box-shadow: 0px 2px 16px rgb(0 0 0 / 25%);
-          background-color: #fff;
-          color: #414141;
+          background-color: #414141;
           width: 120px;
+          color: #f3f3f3;
+
+          &::after {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            bottom: 95%;
+            content: '';
+            width: 0;
+            height: 0;
+            border-style: solid;
+            border-width: 0 7px 12px 7px;
+            border-color: transparent transparent #414141 transparent;
+          }
 
           &.showing {
             display: flex;
             flex-direction: column;
           }
           .slot {
-            padding: 4px 12px;
+            cursor: pointer;
+            padding: 4px 8px;
+            margin: 0 4px;
+            border-radius: 2px;
             line-height: 120%;
             &:hover {
+              color: #2ec4dd;
               background-color: #f3f3f3;
               font-weight: 500;
             }
           }
         }
-        &.default {
-          color: #2ec4dd;
-          border-color: #2ec4dd;
-          cursor: pointer;
-        }
-        &.selected {
-          background: #2ec4dd;
-          color: #fff;
-        }
-        &.default,
-        &.selected {
-          &:hover {
-            background: #25a9bf;
-            border-color: #25a9bf;
-            color: #fff;
+
+        &.sat,
+        &.sun {
+          .dropDown {
+            transform: none;
           }
         }
-        &.notAvailable {
-          text-decoration: line-through;
-          color: #9f9f9f;
-          border-color: #9f9f9f;
-          pointer-events: none;
+        &.sat {
+          .dropDown {
+            left: -4px;
+            &::after {
+              left: 14%;
+              transform: none;
+            }
+          }
         }
-        &.nextMonth {
-          color: #dae1e7;
-          border-color: #dae1e7;
-        }
-        &.past {
-          color: #f3f3f3;
-          border-color: #f3f3f3;
-          pointer-events: none;
+        &.sun {
+          .dropDown {
+            right: -4px;
+            left: unset;
+            &::after {
+              left: unset;
+              right: 14%;
+              transform: none;
+            }
+          }
         }
       }
     }
