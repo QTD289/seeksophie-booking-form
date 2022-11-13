@@ -25,7 +25,7 @@ export const SAMPLE_TIME_SLOTS: TimeSlot[] = [
 
 export const SAMPLE_PRICES: Price[] = [
   {
-    min: 1,
+    min: 0,
     max: 4,
     price: 100,
   },

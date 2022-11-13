@@ -67,6 +67,22 @@
         font-weight: 500;
       }
     }
+    .total-price {
+      .per,
+      .total {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 12px;
+        font-size: 12px;
+      }
+
+      .total {
+        padding-top: 12px;
+        border-top: solid 1px #dfdfdf;
+        font-size: 16px;
+        font-weight: 500;
+      }
+    }
 
     .btn {
       background: #4a5ced;
@@ -133,4 +149,17 @@
       }
     }
   }
+}
+
+.dateTimeSelect {
+  .selectedDateTime {
+    color: #2ec4dd;
+    font-weight: 500;
+  }
+}
+
+.error {
+  color: #dc3545;
+  font-size: 12px;
+  margin-top: -16px;
 }

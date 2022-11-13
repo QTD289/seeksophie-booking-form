@@ -15,3 +15,13 @@ export interface DailyPrice {
   prices: Price[];
   timeSlots: TimeSlot[];
 }
+
+export enum ErrorType {
+  PersonsNo = 'personNo',
+  DateTime = 'dateTime',
+}
+
+export interface FormError {
+  [ErrorType.PersonsNo]?: string;
+  [ErrorType.DateTime]?: string;
+}

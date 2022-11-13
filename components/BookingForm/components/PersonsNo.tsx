@@ -4,8 +4,7 @@ import { FaRegMinusSquare, FaRegPlusSquare, FaUser } from 'react-icons/fa';
 import { useFormStore } from 'stores';
 
 export const PersonsNo = (): JSX.Element => {
-  const { maxPersonsNo, personsNo, changePersonsNo, increase, decrease } =
-    useFormStore();
+  const { maxPersonsNo, personsNo, changePersonsNo } = useFormStore();
 
   return (
     <div
@@ -17,7 +16,7 @@ export const PersonsNo = (): JSX.Element => {
       <div className="placeholder">Number of Persons</div>
       <div
         className={classNames('minus', { disabled: personsNo < 1 })}
-        onClick={decrease}
+        onClick={() => changePersonsNo(personsNo - 1)}
       >
         <FaRegMinusSquare />
       </div>
@@ -29,7 +28,7 @@ export const PersonsNo = (): JSX.Element => {
       />
       <div
         className={classNames('plus', { disabled: personsNo >= maxPersonsNo })}
-        onClick={increase}
+        onClick={() => changePersonsNo(personsNo + 1)}
       >
         <FaRegPlusSquare />
       </div>

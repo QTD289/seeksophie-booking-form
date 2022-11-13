@@ -15,7 +15,7 @@ const generateTimeSlots = (): TimeSlot[] =>
 
 const generatePrices = (): Price[] =>
   [0, 1].reduce((ret, index) => {
-    const price = generateRandomNumber(150) + 1;
+    const price = generateRandomNumber(150) + 20;
     const priceSlot = { ...SAMPLE_PRICES[index], price };
     ret.push(priceSlot);
     return ret;
