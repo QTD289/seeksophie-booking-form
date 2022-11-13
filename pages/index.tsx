@@ -1,8 +1,12 @@
 import Head from 'next/head';
 
+import { useFormStore } from 'stores';
+
 import { BookingForm } from '../components';
 
 export default function Home() {
+  const { showingCalendar, toggleCalendar } = useFormStore();
+
   return (
     <div>
       <Head>
@@ -18,6 +22,9 @@ export default function Home() {
       </Head>
 
       <main>
+        {showingCalendar && (
+          <div className="overlay" onClick={toggleCalendar} />
+        )}
         <BookingForm />
       </main>
     </div>

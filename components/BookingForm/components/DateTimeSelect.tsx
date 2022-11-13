@@ -7,7 +7,8 @@ import { Calendar } from 'Calendar';
 import { useFormStore } from 'stores';
 
 export const DateTimeSelect = (): JSX.Element => {
-  const { init, bookingDate, bookingTime } = useFormStore();
+  const { init, bookingDate, bookingTime, showingCalendar, toggleCalendar } =
+    useFormStore();
 
   useEffect(() => {
     init();
@@ -19,6 +20,7 @@ export const DateTimeSelect = (): JSX.Element => {
         className={classNames('field calendar', {
           selected: bookingDate && bookingTime,
         })}
+        onClick={toggleCalendar}
       >
         <div className="icon">
           <FaCalendarAlt />
@@ -32,7 +34,11 @@ export const DateTimeSelect = (): JSX.Element => {
         )}
       </div>
 
-      <Calendar />
+      {showingCalendar && (
+        <div className="calendarWrapper">
+          <Calendar />
+        </div>
+      )}
     </div>
   );
 };

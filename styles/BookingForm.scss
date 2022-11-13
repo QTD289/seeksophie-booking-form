@@ -152,9 +152,19 @@
 }
 
 .dateTimeSelect {
+  position: relative;
   .selectedDateTime {
     color: #2ec4dd;
     font-weight: 500;
+    cursor: pointer;
+    flex: 1;
+  }
+  .calendarWrapper {
+    position: absolute;
+    z-index: 2;
+    left: 50%;
+    transform: translateX(-50%);
+    max-width: 100%;
   }
 }
 
@@ -162,4 +172,11 @@
   color: #dc3545;
   font-size: 12px;
   margin-top: -16px;
+}
+
+.overlay {
+  position: fixed;
+  z-index: 1;
+  background-color: rgba(0, 0, 0, 0.5);
+  inset: 0;
 }

@@ -11,6 +11,9 @@ import {
 import { generateDailyPrices } from '../utils/mockData';
 
 interface State {
+  showingCalendar: boolean;
+  toggleCalendar: () => void;
+
   init: () => void;
   minimumPrice: number;
   dailyPrices: DailyPrice[];
@@ -34,6 +37,9 @@ interface State {
 }
 
 export const useFormStore = create<State>((set, get) => ({
+  showingCalendar: false,
+  toggleCalendar: () => set({ showingCalendar: !get().showingCalendar }),
+
   init: () => {
     const dailyPrices = generateDailyPrices();
     const minimumPrice = dailyPrices.reduce((min, price) => {
@@ -74,6 +80,7 @@ export const useFormStore = create<State>((set, get) => ({
       bookingTime,
       bookingPrices,
       error: { ...error, [ErrorType.DateTime]: '' },
+      showingCalendar: false,
     });
     calculatePrice();
   },
